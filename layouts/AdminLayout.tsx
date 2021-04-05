@@ -60,7 +60,7 @@ function _AppDrawer() {
 
   return (
     <>
-      {/* <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      {/* <Button ref={btnRef} colorScheme="blue" onClick={onOpen}>
         Open
       </Button> */}
 
@@ -148,7 +148,7 @@ function _SidebarListTile({
       margin={margin}
       _hover={{
         color: "white",
-        backgroundColor: "teal.500",
+        backgroundColor: "blue.500",
       }}
       onClick={onClick}
     >
@@ -181,7 +181,7 @@ function _AppSidebarAvatar() {
       padding={SIDEBAR_PADDING}
       _hover={{
         color: "white",
-        backgroundColor: "teal.500",
+        backgroundColor: "blue.500",
       }}
     >
       <Avatar></Avatar>

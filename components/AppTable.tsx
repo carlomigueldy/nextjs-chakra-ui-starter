@@ -10,7 +10,10 @@ import {
   TableCaption,
   IconButton,
   HStack,
+  Button,
 } from "@chakra-ui/react";
+
+const FAKE_ARRAY = [...new Array(15)];
 
 export type AppTableProps<T> = {
   headers: string[];
@@ -33,6 +36,10 @@ const PlaceholderItem = () => (
 );
 
 function AppTable() {
+  const placeholderList = FAKE_ARRAY.map((item, index) => {
+    return <PlaceholderItem key={index} />;
+  });
+
   return (
     <>
       <Table variant="simple">
@@ -45,27 +52,8 @@ function AppTable() {
             <Th>actions</Th>
           </Tr>
         </Thead>
-        <Tbody>
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot>
+        <Tbody>{placeholderList}</Tbody>
+        <Tfoot></Tfoot>
       </Table>
     </>
   );
