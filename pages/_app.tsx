@@ -4,6 +4,7 @@ import Head from "next/head";
 
 import "../styles/globals.css";
 import "@fontsource/sora";
+import AdminLayout from "../layouts/AdminLayout";
 
 const theme = extendTheme({
   fonts: {
@@ -15,16 +16,28 @@ const theme = extendTheme({
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <ChakraProvider theme={theme}>
-        <Head>
-          <title>Create Next App</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+      <SafeHydrate>
+        <ChakraProvider theme={theme}>
+          <Head>
+            <title>Create Next App</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-        <Component {...pageProps} />
-      </ChakraProvider>
+          <AdminLayout>
+            <Component {...pageProps} />
+          </AdminLayout>
+        </ChakraProvider>
+      </SafeHydrate>
     </>
   );
 }
 
 export default App;
+
+function SafeHydrate({ children }) {
+  return (
+    <div suppressHydrationWarning>
+      {typeof window === "undefined" ? null : children}
+    </div>
+  );
+}

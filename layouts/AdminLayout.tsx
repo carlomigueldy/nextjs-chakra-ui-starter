@@ -19,6 +19,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
+import { useRouter } from "next/router";
 import { useWindowSize } from "../hooks/useWindowSize";
 
 const DRAWER_WIDTH = "325px";
@@ -37,7 +38,7 @@ function AdminLayout({ children }: { children: React.ReactNode }) {
       >
         <_AppDrawer></_AppDrawer>
 
-        <Box marginLeft={DRAWER_WIDTH} width="100%" padding="10">
+        <Box marginLeft={DRAWER_WIDTH} width="100%" padding="5">
           {children}
         </Box>
       </main>
@@ -50,8 +51,12 @@ export default AdminLayout;
 function _AppDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-
+  const router = useRouter();
   const [width, height] = useWindowSize();
+
+  function toMainView() {
+    router.replace("/");
+  }
 
   return (
     <>
@@ -74,10 +79,26 @@ function _AppDrawer() {
 
         <Box marginTop="16" />
 
-        <_SidebarListTile margin={SIDEBAR_LIST_TILE_MARGIN} />
-        <_SidebarListTile margin={SIDEBAR_LIST_TILE_MARGIN} />
-        <_SidebarListTile margin={SIDEBAR_LIST_TILE_MARGIN} />
-        <_SidebarListTile margin={SIDEBAR_LIST_TILE_MARGIN} />
+        <_SidebarListTile
+          label="Home"
+          onClick={toMainView}
+          margin={SIDEBAR_LIST_TILE_MARGIN}
+        />
+        <_SidebarListTile
+          label="Users"
+          onClick={toMainView}
+          margin={SIDEBAR_LIST_TILE_MARGIN}
+        />
+        <_SidebarListTile
+          label="Products"
+          onClick={toMainView}
+          margin={SIDEBAR_LIST_TILE_MARGIN}
+        />
+        <_SidebarListTile
+          label="Settings"
+          onClick={toMainView}
+          margin={SIDEBAR_LIST_TILE_MARGIN}
+        />
 
         <_AppSidebarAvatar></_AppSidebarAvatar>
       </Box>
@@ -112,7 +133,11 @@ function _AppDrawer() {
   );
 }
 
-function _SidebarListTile({ label = "Label", margin = null }) {
+function _SidebarListTile({
+  label = "Label",
+  margin = null,
+  onClick = function () {},
+}) {
   return (
     <Box
       backgroundColor="gray.50"
@@ -125,6 +150,7 @@ function _SidebarListTile({ label = "Label", margin = null }) {
         color: "white",
         backgroundColor: "teal.500",
       }}
+      onClick={onClick}
     >
       <Center>
         <Icon />
@@ -136,7 +162,11 @@ function _SidebarListTile({ label = "Label", margin = null }) {
 }
 
 function _AppSidebarAvatar() {
-  function onClickAvatarTile() {}
+  const router = useRouter();
+
+  function onClickAvatarTile() {
+    router.push("profile");
+  }
 
   return (
     <Box

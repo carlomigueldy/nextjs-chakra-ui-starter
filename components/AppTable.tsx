@@ -1,3 +1,4 @@
+import { DeleteIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
 import {
   Table,
   Thead,
@@ -7,6 +8,8 @@ import {
   Th,
   Td,
   TableCaption,
+  IconButton,
+  HStack,
 } from "@chakra-ui/react";
 
 export type AppTableProps<T> = {
@@ -18,7 +21,14 @@ const PlaceholderItem = () => (
   <Tr>
     <Td>inches</Td>
     <Td>millimetres (mm)</Td>
-    <Td isNumeric>25.4</Td>
+    <Td>25.4</Td>
+    <Td>
+      <HStack spacing="5px">
+        <IconButton aria-label="Search database" icon={<ViewIcon />} />
+        <IconButton aria-label="Search database" icon={<EditIcon />} />
+        <IconButton aria-label="Search database" icon={<DeleteIcon />} />
+      </HStack>
+    </Td>
   </Tr>
 );
 
@@ -31,26 +41,11 @@ function AppTable() {
           <Tr>
             <Th>To convert</Th>
             <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
+            <Th>multiply by</Th>
+            <Th>actions</Th>
           </Tr>
         </Thead>
         <Tbody>
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
-          <PlaceholderItem />
           <PlaceholderItem />
           <PlaceholderItem />
           <PlaceholderItem />
